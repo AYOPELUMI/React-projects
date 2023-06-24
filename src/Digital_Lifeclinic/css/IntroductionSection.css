@@ -1,0 +1,78 @@
+.introSectionContainer{
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	display: flex;
+	padding: 4px;
+	background: #03254c;
+	/* background-image: url('../assets/intro_section img/introSection Background.jpeg'); */
+	background-position: center;
+	padding-top: 80px;
+	-webkit-transition: background .9s ease, opacity .9s ease;
+	   -moz-transition: background .9s ease, opacity .9s ease;
+	    -ms-transition: background .9s ease, opacity .9s ease;
+	     -o-transition: background .9s ease, opacity .9s ease;
+	        transition: background .9s ease, opacity .9s ease;
+}
+
+.section{
+	padding: 10px;
+	width: 50%;
+	height: 100%;
+	position: relative;
+	background: transparent;
+	-webkit-transition: top .5s ease;
+	   -moz-transition: top .5s ease;
+	    -ms-transition: top .5s ease;
+	     -o-transition: top .5s ease;
+	        transition: top .5s ease-in;
+}
+.leftAside{
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+}
+.leftAsideHeading{
+	font-size: 50px;
+	color: #fff;
+	letter-spacing: normal;
+	line-height: 55px;
+}
+.leftAsideWord{
+	font-size: 20px;
+	color: #444;
+}
+.rightAside{
+
+}
+
+@media screen and (max-width: 900px){
+	.rightAside{
+		display: none;	
+	}
+	.leftAside{
+		width: 100%;
+		justify-content: start;
+	}
+}
+
+@media screen and (max-width: 500px){
+	.introSectionContainer{
+		padding-top: 0;
+		height: 70vh;
+	}
+	.rightAside{
+		display: none;	
+	}
+	.leftAsideHeading{
+		font-size: 30px;
+		letter-spacing: normal;
+		line-height: 45px;
+	}
+	.leftAsideWord{
+	font-size: 15px;
+	color: #444;
+}
+}

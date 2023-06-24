@@ -1,0 +1,15 @@
+.form{
+	display: flex;
+	padding: 20px;
+	padding-top: 10px;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	gap: 25px;
+
+	.formLabel{
+		flex: 40%;
+		display: flex;
+		padding-bottom: 0;
+		padding-right: 5px;
+	}
+}

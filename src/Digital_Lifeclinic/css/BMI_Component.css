@@ -1,0 +1,53 @@
+.Calc_BMi{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	padding: 3%;
+	}
+
+.BMI_Calc, .BMI_Result{
+	flex: 30%;
+}
+.BMI_Calc form{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	gap: 20px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: lightblue;
+}
+
+.form_Label{
+	width: 100%;
+	padding: 3%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	font-size: 30px;
+}
+.BMI_CalcInput{
+	width: 70%;
+	padding: 1%;
+	border-radius: 5px;
+	border:2px solid #dedede;
+	outline: none;
+	font-size: 25px;
+	text-align: center;
+}
+.form_ButtonContainer{
+	display: flex;
+	gap: 20px;
+}
+.form_Button{
+	width: 100px;
+	height: 40px;
+	padding: 4px 8px;
+	font-weight: 500;
+	font-size: 20px;
+  	font-family: inherit;
+  	background-color: #77b1d8;
+  	cursor: pointer;
+}

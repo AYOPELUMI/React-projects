@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playball:wght@300;400;500;600&display=swap');
+
+:root {
+    --REST-Country-bg-color:#fff;
+    --Rest-font-color: #000;
+    --REST-Header-bg-color: #fff;
+    --REST-Countries-Container-bg-color: #80808045;
+    --REST-GoBack-btn-bg-color:oldlace;
+    --REST-li-hover: lightgray;
+}
+
+[data-theme="dark"] {
+    --primary-color: rgb(0 255 255);
+    --REST-Country-bg-color: #1b3448;
+    --REST-font-color: #Fff;
+    --REST-Header-bg-color: #2b3743;
+    --REST-Countries-Container-bg-color: #212e37;
+    --REST-GoBack-btn-bg-color: #165491;
+    --REST-li-hover: #1b1818;
+}
+*{
+	font-family: 'Mouse Memoirs', sans-serif;
+}
+.REST_Container{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background: #f4f4f4;
+	position: relative;
+	background: var(--REST-Countries-Container-bg-color);
+}
+
+.WelcomePage{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	z-index: 2;
+	color: #fff;
+	font-size: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: top .3s ease-in-out;
+}
+.REST_BODY{
+	transition: left .4s ease-in-out;
+	height: 100%;
+}
+.REST_Header{
+	display: flex;
+	padding:25px 5%;
+	font-size: 20px;
+	color: var(--REST-font-color);
+	justify-content: space-between;
+	position: static;
+	background: var(--REST-Header-bg-color);
+	font-weight: lighter;
+}
+.REST_Header div:first-child{
+	font-weight: 700;
+}
+.REST_Header div{
+	display: flex;
+	align-items: center;
+
+}
+.REST_Header div i{
+	font-size: 20px;
+}
+
+.REST_Searchbar {
+	display: flex;
+	padding: 1% 5%;
+	justify-content: space-between;
+	background: var(--REST-Countries-Container-bg-color);
+}
+.REST_Search{
+	width: 200px;
+	height: 0;
+	padding: 19px 10px;
+	border: none;
+	outline: none;
+	border-radius: 8px;
+	background: var(--REST-GoBack-btn-bg-color);
+	color: var(--REST-font-color);
+}
+.REST_dropdown{
+	background: var(--REST-GoBack-btn-bg-color);
+	padding: 12px 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 40px;
+	font-size: 14px;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	border-radius: 8px;
+	color: var(--REST-font-color);
+
+}
+.dropdown {
+  position: relative;
+}
+
+.REST_menu {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 10px 0;
+  padding: 0;
+  width: 100%;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: var(--REST-font-color);
+}
+
+.REST_menu > li {
+  margin: 0;
+  background-color: var(--REST-GoBack-btn-bg-color);
+  color: var(--REST-font-color);
+}
+.REST_menu > li:hover {
+  background-color: var(--REST-li-hover);
+}
+.REST_menu > li > button {
+  width: 100%;
+  background: inherit;
+  border: none;
+  padding: 10px 8px;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  color: var(--REST-font-color);
+}
+
+.REST_Countries_Container{
+	display: grid;
+	grid-template-columns: repeat(auto-fit,minmax(160px, 15%));
+	grid-template-rows: repeat(3,220px);
+	width: 100%;
+	padding: 3%;
+	grid-gap: 22px;
+	grid-row-gap: 35px;
+	background: var(--REST-Countries-Container-bg-color);
+	color: var(--REST-font-color);
+	font-size: 23px;
+	text-align: center;
+}
+.REST_Countries_Div{
+	padding: 1px;
+}
+
+.REST_Countries_Container_Selected_Container{
+	display: flex;
+	gap: 13px;
+	padding: 3%;
+	padding-top: 30px;
+	background: #80808045;
+	background: var(--REST-Countries-Container-bg-color);
+}
+.REST_Countries_Container_Selected_Container .REST_Countries_Div{
+	width: 45%;
+	height: 50%;
+}
+.Country_Container{
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	background: var(--REST-Country-bg-color);
+	border: none;
+	gap: 5px;
+	transition: all 0.8s ease;
+	appearance: none;
+	padding-bottom: 10px;
+	transform-style: preserve-3d;
+	transform: rotateY(0deg);
+	box-shadow: 2px 2px 9px 0px rgb(0 0 0 / 73%);
+}
+.Country_Container:hover{
+	transform: scale(1.1);
+}
+.selected_Country{
+	padding: 3px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	background: var(--REST-Country-bg-color);
+	border: none;
+	gap: 5px;
+	appearance: none;
+	transition: all 0.3s ease;
+}
+.Country_Container > *{
+	transform: translateZ(30px);
+}
+.Country_Container img,.selected_Country img{
+	width: 100%;
+	border-radius: 7px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+	height: 120px;
+}
+.selected_Country img{
+	height: 100%;
+}
+.Country_Container h3, .selected_Country h3{
+	padding: 10px;
+	font-size: 15px;
+	align-items: center;
+	display: flex;
+	height: 50px;
+	width: 100%;
+	color: var(--REST-font-color);
+}
+.Country_Container div, .selected_Country div{
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: start;
+}
+.Country_Container div h3, .selected_Country div h3{
+	font-size: 13px;
+	font-weight: lighter;
+	color: var(--REST-font-color);
+	padding:0;
+	text-align: left;
+	display: block;
+	height: fit-content;
+}
+
+.REST_Back_Button{
+	width: 70px;
+	height: 40px;
+	border-radius: 20px;
+	border: none;
+	outline: none;
+	background: var(--REST-GoBack-btn-bg-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	color: var(--REST-font-color) ;
+}
+.REST_Country_Info{
+	width: 50%;
+	height: fit-content;
+	padding: 10px;
+	color: var(--REST-font-color);
+}
+.REST_Country_Info h3{
+	font-size: 25px;
+	font-weight: 700;
+	margin-top: 20px;
+	margin-bottom: 17px;
+}
+.REST_Country_Info p{
+	margin-top: 5px;
+	font-size: 17px;
+	color: var(--REST-font-color);
+	line-height: 23px;		
+}
+.REST_Country_Info div{
+	margin-top: 20px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit,minmax(80px, 30%));
+	grid-gap: 10px;
+}
+.REST_Country_Info h2{
+	margin-top: 20px;
+}
+.REST_Country_Info div button{
+	font-size: 10px;
+	height: 30px;
+	outline: none;
+	border: none;	
+	background: var(--REST-GoBack-btn-bg-color);
+	color: var(--REST-font-color);
+}

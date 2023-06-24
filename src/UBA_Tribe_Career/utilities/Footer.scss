@@ -1,0 +1,23 @@
+.Footer{
+	width: 100%;
+	position: fixed;
+	background: white;
+	display: flex;
+	justify-content: space-between;
+	padding: 30px;
+	bottom: 0;
+	z-index: 4;
+
+	.footerLinksSpan{
+		padding: 5px;
+
+		.footerLinks{
+			color: #707070;
+			padding-right: 5px;
+
+			&:hover{
+				color: #d70900;
+			}
+		}
+	}
+}

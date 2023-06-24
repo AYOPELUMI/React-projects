@@ -1,0 +1,40 @@
+.card_hover_Container{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	background: #a6a6a6;
+	padding: 30px;
+}
+.card_children_container{
+	overflow: hidden;
+	flex: 25%;
+}
+
+.card_children{
+	height: 300px;
+	position: relative;
+	-webkit-transition: all .7s ease;
+	   -moz-transition: all .7s ease;
+	    -ms-transition: all .7s ease;
+	     -o-transition: all .7s ease;
+	        transition: all .7s ease;
+}
+
+.card{
+	width: 100%;
+	height: 300px;
+	position: relative;
+}
+
+.first_card{
+	background: #f2f2f2;
+}
+.second_card{
+	background: #d2d2d2;
+}
+
+.card_children_container:hover .card_children {
+	translate: 0% -100%;
+}

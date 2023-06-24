@@ -1,0 +1,70 @@
+.slider_body{
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #1f2531
+}
+.sliderContainer{
+  width: fit-content;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  height: 300px;
+}
+.image{
+  width: 100%;
+  margin: 16px;
+  text-align: center;
+  transition:  0.8s ease;
+}
+.imageCounter{
+  position: absolute;
+  right:18px;
+  top:10px;
+  background: #000;
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 30px;
+  border-radius: 15px;
+}
+.counter{
+   color: #fff;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+}
+.imageCountdown{
+  position: absolute;
+  top: 80%;
+  left: 40%;
+  width: 100px;
+  height: 100px;
+}
+.countdown{
+  height: 95%;
+  border: 4px solid #000;
+  border-radius: 50%;
+  background: #000;
+  border-radius: 2px;
+  animation:  progress_bar 10s ease;
+}
+  @keyframes progress_bar {
+     100%  {
+      width:  0%;
+    }
+
+    0% {
+      width:  100%;
+    }
+  }
+.rightArrow,.leftArrow{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: #000;
+}

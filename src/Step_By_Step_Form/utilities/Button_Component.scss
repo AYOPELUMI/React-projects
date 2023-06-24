@@ -1,0 +1,32 @@
+.ButtonContainer{
+	display: flex;
+	align-items: center;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+
+	.GOBackButton{
+		border-bottom: 1px solid #000;
+		color: #000;
+		font-weight: bolder;
+		transition: all 0.4s ease;
+		font-size: 14px;
+		text-align: center;
+		cursor: pointer;
+		&:hover{
+			color: skyblue;
+			border-bottom:1px solid skyblue;
+		}
+	}
+
+	.Next_Button{
+		width: 100px;
+		padding: 17px 10px;
+		border: none;
+		border-radius: 8px;
+		font-weight: bolder;
+		font-size: 12px;
+		background: #03295a;
+		color: #fff;
+	}
+}

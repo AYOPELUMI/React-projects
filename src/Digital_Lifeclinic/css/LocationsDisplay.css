@@ -1,0 +1,81 @@
+.LocationDisplayContainer{
+	width: 100%;
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	padding: 3%;
+}
+.LocationContainer{
+	flex: 30%;
+	display: grid;
+  	grid-template-rows: 200px 170px;
+  	grid-template-areas: "Image" "Info";
+  	row-gap: 24px;
+  	border-radius: 18px;
+  	background: #1d1d1d;
+  	color:white;
+  	box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+  	text-align: center;
+  	cursor: pointer;
+	transform-style: preserve-3d;
+	transform: rotateY(0deg);
+	-webkit-transition: all .7s ease;
+	   -moz-transition: all .7s ease;
+	    -ms-transition: all .7s ease;
+	     -o-transition: all .7s ease;
+	        transition: all .7s ease;
+}
+.LocationContainer:hover{
+	transform: scale(1.1);
+}
+.Location-Image {
+  grid-area: Image;
+  background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-size: cover;
+}
+.Location-Image img{
+	width: 100%;
+}
+.Location-Info {
+  grid-area: Info;
+  margin: 10px;
+  transform: translateZ(30px);
+}
+
+.Location-Info p {
+  color: grey;
+  font-size:14px;
+  font-weight: 300;
+}
+.Location-Info h2 {
+  margin-top:0px;
+  font-size:28px;
+}
+
+@media screen  and (max-width: 900px) {
+	.LocationDisplayContainer{
+
+	}
+}
+
+@media screen and (max-width: 500px){
+	.smallScreenLocationDisplay{
+		display: block;
+		width: 100%;
+		height: 100vh;
+		overflow: hidden;
+	}
+	.LocationDisplayContainer{
+		width: 300%;
+	}
+	.LocationContainer{
+		flex: 1;
+		transform: scale(0.85);
+	}
+	.LocationContainer:hover{
+	transform: scale(0.75);
+	}
+
+}

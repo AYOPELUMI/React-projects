@@ -1,0 +1,38 @@
+.displayMainBody{
+		background-color: #1f2531;
+		height: 60vh;
+		background-repeat: no-repeat;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		
+	}
+	.adviceWrapper{
+		width: 50vw;
+		background-color: #313a49;
+		color: #d3e3f0;
+		padding: 30px;
+		border-radius: 14px;
+		display: flex;
+		flex-direction: column;
+		align-items:  center;
+		font-weight: lighter;
+	}
+	.adviceId{
+		color: #52ffab;
+	}
+
+
+	@keyframes progress_bar {
+		0% {
+			width:  100%;
+		}
+
+		100%  {
+			width:  0%;
+		}
+	}
+
+	.progress-bar span {
+		animation:  progress_bar 10s ease;
+	}

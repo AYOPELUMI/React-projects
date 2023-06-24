@@ -1,0 +1,50 @@
+.StaffMainContainer{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+	padding: 3%;
+	background: rgb(0 0 0 / 25%);
+}
+
+.StaffContainer{
+	background: #fff;
+	position: relative;
+	flex: 30%;
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 18px;
+	gap: 20px;
+}
+.StaffContainer img{
+	width: 100%;
+	flex: 40%;
+}
+.staff_Info{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+}
+
+@media screen  and (max-width: 500px) {
+	.StaffMainContainer{
+		width: 100%;
+		display: block;
+		overflow: hidden;
+	}
+	.snallScreenStaffMainContainer{
+		display: flex;
+
+		width: 500%;
+		flex-wrap: nowrap;
+	}
+	.StaffContainer{
+		width: 20%;
+		margin: 0.1%;
+		flex: none;
+	}
+}
