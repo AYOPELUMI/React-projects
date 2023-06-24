@@ -22,7 +22,10 @@ export function TimerCardDisplay(props) {
 	const [timerProjectName, setTimerProjectName] = useState("")
 	const [timerProjectTitle, setTimerProjectTitle] = useState("")
 	const [cardEdit, setCardEdit] = useState(false)
- 	
+ 		
+ 	useEffect(() => {
+ 		console.log('enter')
+ 	}, [])
  	const renderForm = () => {
 		return (
 			<TimerCounterForm
