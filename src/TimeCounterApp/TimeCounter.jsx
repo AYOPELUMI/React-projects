@@ -106,6 +106,7 @@ export function TimeCounter() {
 			 el = (
 				<TimerCardDisplay 
 					index={i}
+					key={project.index}
 					TimerIndex={project.index} 
 					project={project} 
 					newTitle = {newTitle}
