@@ -19,6 +19,7 @@ import {Calculator} from "./Calculator/Calculator"
 import {TimeCounter} from "./TimeCounterApp/TimeCounter"
 import {CandyCrush} from "./CandyCrush/CandyCrush"
 import {UbaTribeApp} from "./UBA_Tribe_Career/UbaTribeApp"
+import {ResultSummaryComponent} from "./Result_Summary_Component/Result_Summary_Component"
 
 function ProjectList() {
   return (
@@ -32,10 +33,10 @@ function ProjectList() {
       <div>
       <Link to="/atm-form">Atm form</Link>
       </div>
-{/*       <div>
-      <Link to="/use-effect/01">use effect tutorial 01</Link>
+       <div>
+      <Link to="Result_Summary_Component">Result Summary Component</Link>
       </div>
-      <div>
+      {/*<div>
       <Link to="/use_effect/01_assignment"> use effect tutorial 01_assignment</Link>
       </div>
       <div>
@@ -85,10 +86,10 @@ const router = createBrowserRouter([
   	path: '/atm-form',
   	element: <AtmForm />
   },
-  // {
-  // 	path: '/use-effect/01',
-  // 	element: <UseEffectTutorial01/>
-  // },
+  {
+  	path: 'Result_Summary_Component',
+  	element: <ResultSummaryComponent/>
+  },
   // {
   // 	path :'/use_effect/01_assignment',
   // 	element: <ChangeBackground />

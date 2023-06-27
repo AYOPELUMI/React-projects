@@ -5,35 +5,32 @@ export function TimerCardDisplay(props) {
 	const {
 		project,
 		index,
-		onRemove,
 		TimerIndex,
-		onToggleTimer,
-		addNewTimerObject,
+		updateTimerIndex,
 		timerProjects,
-		addTimerProjects,
-		updateTimeActive,
-		timeActive
+		addTimerProjects
 	} = props
 	const [timerCounterIndex, setTimerCounterIindex] = useState(null)
 	const refContainer = useRef(null)
-	const [timer, setTimer] = useState(project.time)
-	const [timerProject, setTimerProject] = useState(project)
+	const [timer, setTimer] = useState(project.secondElapsed)
+	const [timerObject, setTimerObject] = useState(project)
 	const [timerActive, setTimerActive] = useState(project.timeActive)
-	const [timerProjectName, setTimerProjectName] = useState("")
-	const [timerProjectTitle, setTimerProjectTitle] = useState("")
+	const [timerObjectName, setTimerObjectName] = useState(project.project)
+	const [timerObjectTitle, setTimerObjectTitle] = useState(project.title)
 	const [cardEdit, setCardEdit] = useState(false)
 
  	const renderForm = () => {
 		return (
 			<TimerCounterForm
 				index={index}
-				addNewTimerObject={addNewTimerObject}
 				timerProjects={timerProjects}
 				addTimerProjects={addTimerProjects}
 				addTimerProject={addTimerProject}
-				timerProject = {timerProject}
+				timerProject = {timerObject}
 				cardEdit= {cardEdit}
 				updateCardEdit = {updateCardEdit}
+				timerIndex={TimerIndex}
+				updateTimerIndex={updateTimerIndex}
 			>
 			</TimerCounterForm>
 		)
@@ -43,134 +40,98 @@ export function TimerCardDisplay(props) {
 		setCardEdit(args)
 	}
 
+	let timerProjectsClone = [...timerProjects]
+
+	useEffect(() =>{
+		for (var i = 0; i < timerProjectsClone.length; i++) {
+			if (timerProjectsClone[i].index == timerObject.index) {
+				timerProjectsClone.splice(i,1,timerObject)
+			}
+		}
+		addTimerProjects(timerProjectsClone)
+	},[cardEdit])
 	const handleEditTimer =(e) => {
 		e.preventDefault()
 		console.log("wassup")
-		let timerProjectClone = timerProject
+		let timerObjectClone = timerObject
 
-			if (timeActive == true) {
+			if (timerActive == true) {
 				clearInterval(refContainer.current)
-				timerProject.timerActive = false
+				timerObject.timerActive = false
 				setTimerActive(false)
 			}
-		  timerProjectClone.cardEdit = !timerProjectClone.cardEdit
-		  timerProjectClone.titleEdit = true
-		  timerProjectClone.projectEdit = true
-		  console.log({timerProjectClone})
+		  timerObjectClone.cardEdit = !timerObjectClone.cardEdit
+		  timerObjectClone.titleEdit = true
+		  timerObjectClone.projectEdit = true
+		  console.log({timerObjectClone})
 		  setCardEdit(!cardEdit)
-		  setTimerProject(timerProjectClone)
+		  setTimerObject(timerObjectClone)
 	}
-	console.log({timerProject})
-	function checkTitleAndProject (argument) {
-		if (timerProjectName != project.project && timerProjectTitle != project.title) {
-			setTimerProject(project)
-			setTimerProjectTitle(project.title)
-			setTimerProjectName(project.project)
-			setTimer(project.time)
-			setTimerActive(project.timeActive)
+	console.log({timerObject})
 
-		}
-	}
 	function addTimerProject (args) {
-		setTimerProject(args)
+		setTimerObject(args)
+	}
+	function ConvertSecondElapsed (secondElapsed) {
+		let seconds = secondElapsed > 60 ? (secondElapsed%60) : secondElapsed
+		let minutes = secondElapsed > 60 ? secondElapsed / 60 : 0
+		let hours = secondElapsed > 3600 ? secondElapsed/3600 : 0
+		let time = hours +":"+ minutes.toFixed(0) +":"+ seconds 
+		
+		return time
 	}
 
-	checkTitleAndProject();
-
-			// if (timerProject.timeActive == false) {
-			// 	refContainer.current = setInterval(() => {
-			// 		let minutes = timerProject.minutes;
-			// 		 let hours = timerProject.hours
-			// 		 let seconds = timerProject.seconds
-			// 		seconds +=1
-			// 		if(seconds > 59) {
-			// 			minutes =minutes + 1;
-			// 			seconds = 0
-			// 		}
-			// 		if (minutes > 59) {
-			// 			hours = hours + 1;
-			// 			minutes = 0
-			// 		}
-			// 		// console.log(activeTimerObject.timeActive)
-			// 		let time = hours  + ":" + minutes +":"+ seconds;
-			// 		timerProject.timeActive = true
-			// 		timerProject.time = time
-			// 		setTimer(time)
-			// 		timerProject.minutes = minutes
-			// 		timerProject.seconds = seconds
-			// 		timerProject.hours = hours
-			// 		setTimerActive(true)
-			// 		setTimerProject(timerProject)
-			// 		// console.log({activeTimerObject})
-			// 	}, 1000)
-			// }
 
 		const handleToggleTimer = (e) => {
-			let activeTimerObject = timerProject
-			let minutes= 0
-			let seconds = 0
-			let hours = 0
+			let activeTimerObject = timerObject
+
 			if (activeTimerObject.timeActive == false) {
 				refContainer.current = setInterval(() => {
-					 minutes = activeTimerObject.minutes;
-					 hours = activeTimerObject.hours
-					 seconds = activeTimerObject.seconds
-					seconds +=1
-					if(seconds > 59) {
-						minutes =minutes + 1;
-						seconds = 0
-					}
-					if (minutes > 59) {
-						hours = hours + 1;
-						minutes = 0
-					}
+					let secondElapsed = activeTimerObject.secondElapsed
+					secondElapsed += 1 
 					// console.log(activeTimerObject.timeActive)
-					let time = hours  + ":" + minutes +":"+ seconds;
 					activeTimerObject.timeActive = true
-					activeTimerObject.time = time
-					setTimer(time)
-					activeTimerObject.minutes = minutes
-					activeTimerObject.seconds = seconds
-					activeTimerObject.hours = hours
+					activeTimerObject.secondElapsed = secondElapsed
+					setTimer(secondElapsed)
 					setTimerActive(true)
-					setTimerProject(activeTimerObject)
+					setTimerObject(activeTimerObject)
 					// console.log({activeTimerObject})
 				}, 1000)
 			}
 			else {
 				clearInterval(refContainer.current)
 				activeTimerObject.timeActive = false
-				setTimerProject(activeTimerObject)
+				setTimerObject(activeTimerObject)
 				setTimerActive(false)
 			}
 	}
 
 	const removeTimer = () => {
-		let timerProjectsClone = Array.from(timerProjects)
-		if (timeActive == true) {
+		let timerObjectsClone = Array.from(timerProjects)
+		if (timerActive == true) {
 			clearInterval(refContainer.current)
 			setTimerActive(false)
 		}
-		timerProjectsClone.splice(index,1)
-		addTimerProjects(timerProjectsClone)
+		timerObjectsClone.splice(index,1)
+		addTimerProjects(timerObjectsClone)
 	}
 	return(
-		<div key={index} index={TimerIndex} >
+		<div  index={timerObject.index} >
 			{ cardEdit  ? renderForm()
 				:
 
-				<div  index={TimerIndex} key={TimerIndex} className="displayTimerContainer">
+				<div key={timerObject.index} className="displayTimerContainer">
 
 					<div className="titleProjectContainer">
-						<h2>{project.title}</h2>
-						<h3>{project.project}</h3>
+						<h2>{timerObject.title}</h2>
+						<h3>{timerObject.project}</h3>
 					</div>
-					<div className="timerDisplay">{timer}</div>
+					<div className="timerDisplay">{ConvertSecondElapsed(timer)}</div>
 					<div className="timerProjectBtnContainer">
-						<button type="button" onClick={handleEditTimer} index={TimerIndex}>Edit</button>
-						<button type="button"  onClick={removeTimer} index={TimerIndex}>Remove</button>
+						<button type="button" onClick={handleEditTimer} index={timerObject.index}>Edit</button>
+						<button type="button"  onClick={removeTimer} index={timerObject.index}>Remove</button>
 					</div>
-					<button type="button" className={timerActive ? "timerContollerBtnActive" : "timerContollerBtnDefault"} index={TimerIndex}  onClick={handleToggleTimer}>{timerActive ? "Stop" : "Start"}</button>
+					<button type="button" className={timerActive ? "timerContollerBtnActive" : "timerContollerBtnDefault"} index={timerObject.index}  onClick={handleToggleTimer}>{timerActive ? "Stop" : "Start"}</button>
 				</div>
 			}
 		</div>
