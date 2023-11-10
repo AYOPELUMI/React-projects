@@ -1,0 +1,33 @@
+@import "./mobileDesign.scss";
+
+.Summary_Container{
+
+	@include xs{
+		padding: 0;
+		width: 100%;
+		height: 200px;
+		display: flex;
+		align-items: start;
+		justify-content: center;
+
+		ul{
+			flex-direction: row;
+			padding-left: 0;
+			padding: 15px;
+			width: fit-content;
+			gap: 14px;
+			padding-top: 15px;
+
+			li{
+				width: fit-content;
+				.Label_Circle{
+					margin: 0;
+				}
+				.labelInfo{
+					display: none;
+					visibility: hidden;
+				}
+			}
+		}
+	}
+}

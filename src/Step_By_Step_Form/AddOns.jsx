@@ -1,9 +1,12 @@
 import "./AddOns.scss"
+import "./AddOns_mobile.scss"
 import {ButtonComponent} from "./utilities/Button_Component"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 
  let Add_Ons_Array = []
- const AddOnsOptionValue = [1,2,2]
+ const AddOnsOptionMonthlyValue = [1,2,2]
+ const AddOnsOptionYearlyValue = [10,20,20]
+
  let AddOnsPlan = ["Online Services","Larger Storage","Customizable Profile"]
  const AddOnsOptionWord = [<span><h4>Online Services</h4><p>Access to Multiplayer games</p></span>,<span><h4>Larger Storage</h4><p>Extra 1TB of cloud save</p></span>,<span><h4>Customizable Profile</h4><p>Custom theme on your profile</p></span>]
 
@@ -15,12 +18,14 @@ export function AddOns(props){
 		HandleGoBackEvent,
 		HandleAddonsSelection,
 		AddOnsPlan_Array,
-		AddOnsBooleanValue
+		AddOnsBooleanValue,
+		PlanObject
 	} = props
 
 	const [CheckedValue, setCheckedValue] = useState(AddOnsBooleanValue)
 	const [IsValid, setIsValid] = useState(true)
 	const [AddsOnValue, setAddsOnValue] = useState(AddOnsPlan_Array)
+	const [isMonthly, setIsMonthly] = useState(PlanObject.isMonthly)
 
 	Add_Ons_Array = AddOnsPlan_Array
 
@@ -43,6 +48,29 @@ export function AddOns(props){
 		setCheckedValue(CheckedValue_Clone)
 		setAddsOnValue(Add_Ons_Array)
 	}
+console.log({isMonthly})
+	// useEffect(() =>{
+	// 	console.log("i sm in the effect phase")
+	// 	let CheckedValue_Clone = Array.from(CheckedValue)
+	// 	if (isMonthly == false) {
+	// 		for (var i = 0; i < Add_Ons_Array.length; i++) {
+	// 			if ( CheckedValue_Clone[i] == true && Add_Ons_Array[i] != null) {
+	// 				Add_Ons_Array[i]=Add_Ons_Array[i] 
+	// 			}
+	// 		}
+			
+	// 	}
+	// else{
+	// 			for (var i = 0; i < Add_Ons_Array.length; i++) {
+	// 			if ( CheckedValue_Clone[i] == true && Add_Ons_Array[i] != null) {
+	// 				Add_Ons_Array[i]= Add_Ons_Array[i]*10
+	// 			}
+	// 		}
+	// 		setCheckedValue(CheckedValue_Clone)
+	// 		setAddsOnValue(Add_Ons_Array)	
+	
+	// }
+// },[isMonthly])
 	console.log({CheckedValue})
 	const HandleSubmitAddOns = () => {
 		let count=0;
@@ -54,21 +82,47 @@ export function AddOns(props){
 			else{
 				setIsValid(true)
 			}
-
 		}
 
 		if(count <3){
 			setIsValid(true)
-			HandleFormValidity(true)
+			if (isMonthly == false) {
+					for (var i = 0; i < Add_Ons_Array.length; i++) {
+						if ( CheckedValue[i] == true && Add_Ons_Array[i] != null && Add_Ons_Array[i] < 10) {
+							Add_Ons_Array[i]=Add_Ons_Array[i] 
+						}
+						else{
+							Add_Ons_Array[i]=Add_Ons_Array[i]/10	
+						}
+					}
+					
+				}
+			else{
+						for (var i = 0; i < Add_Ons_Array.length; i++) {
+							console.log({CheckedValue})
+						if ( CheckedValue[i] == true && Add_Ons_Array[i] < 10) {
+							Add_Ons_Array[i]= Add_Ons_Array[i]*10
+						}
+						console.log("int the else statement")
+					}
+					
+			}
+			console.log({Add_Ons_Array})
 			HandleAddonsSelection([Add_Ons_Array,CheckedValue,AddOnsPlan])
 		}
 	}
 		let AddOnSOption=[]
 		for (var i = 0; i < AddOnsPlan_Array.length; i++) {
 			const Option_El = (
-				<label index={i} >
-					<input type="checkbox" idName={AddOnsPlan[i]} value={AddOnsOptionValue[i]} checked={CheckedValue[i]} onChange={Handle_Add_Ons_Click}  index={i}/>
+				<label className="input__container" key={i} index={i} style={{
+					background : CheckedValue[i] ? "rgb(240 246 255 / 61%)" : "hsl(0, 0%, 100%)",
+					border: CheckedValue[i] ? "2px solid hsl(231, 11%, 63%)" : undefined
+				}} >
+					<input type="checkbox" className="input" idName={AddOnsPlan[i]} value={AddOnsOptionMonthlyValue[i]} checked={CheckedValue[i]} onChange={Handle_Add_Ons_Click}  index={i}/>
 					{AddOnsOptionWord[i]}
+					<p className="valueDisplay">
+						${PlanObject.isMonthly ?  AddOnsOptionYearlyValue[i]+"/yr" : AddOnsOptionMonthlyValue[i]+"/mon"}
+					</p>
 				</label>
 			)
 			AddOnSOption.push(Option_El)
@@ -78,7 +132,6 @@ export function AddOns(props){
 			<div className="Add_Ons_Heading">
 				<h3>Picks add-ons</h3>
 				<p>Add-ons helps enhance your gaming experience</p>
-			{/*	{JSON.stringify(CheckedValue)}*/}
 			</div>
 				{IsValid ? null 
 	 		: (
@@ -88,17 +141,17 @@ export function AddOns(props){
 	 				position:"absolute",
 	 				top:"19%",
 	 				fontWeight:"bolder"
-	 			}}>PLease select Your Option</p>
+	 			}}>Please select Your Option</p>
 	 		)}
 			<form action="">
 				{AddOnSOption}
 			</form>
 			 	<ButtonComponent
-			DisplayWord = "Next Step"
-			HandleEvent = {HandleSubmitAddOns}
-			update = {update}
-			HandleGoBackEvent={HandleGoBackEvent}
-	 	></ButtonComponent>
+					DisplayWord = "Next Step"
+					HandleEvent = {HandleSubmitAddOns}
+					update = {update}
+					HandleGoBackEvent={HandleGoBackEvent}
+			 	></ButtonComponent>
 		</div>
 		)	
 }

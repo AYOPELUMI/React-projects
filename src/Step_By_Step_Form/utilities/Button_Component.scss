@@ -1,10 +1,11 @@
 .ButtonContainer{
 	display: flex;
+	width: 90%;
+	margin-top: 25px;
+	background: #fff;
 	align-items: center;
-	width: 100%;
-	align-items: center;
-	justify-content: space-between;
 
+	
 	.GOBackButton{
 		border-bottom: 1px solid #000;
 		color: #000;
@@ -21,12 +22,12 @@
 
 	.Next_Button{
 		width: 100px;
-		padding: 17px 10px;
+		padding: 10px 13px;
 		border: none;
 		border-radius: 8px;
 		font-weight: bolder;
 		font-size: 12px;
-		background: #03295a;
 		color: #fff;
+		cursor: pointer;
 	}
 }

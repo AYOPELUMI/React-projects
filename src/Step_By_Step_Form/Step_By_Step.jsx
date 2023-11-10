@@ -6,15 +6,18 @@ import {AddOns} from "./AddOns"
 import{ProfileSummary} from "./ProfileSummary"
 import {ButtonComponent} from "./utilities/Button_Component"
 import "./Step_By_Step_Form.scss"
+import "./Step_By_Step_Form_Mobile.scss"
+import leftSideBgSvg from "./assets/images/bg-sidebar-desktop.svg"
+import thankYouIcon from "./assets/images/icon-thank-you.svg"
 
 let PlanObject = {
 	name : "",
-	value : ""
+	value : "",
+	isMonthly : false
 }
 let PersonalInfo_Object = {
 	name : "",
 	email : "",
-	countryCode: "",
 	phoneNumber: ""
 }
 let AddOnsPlan_Array =[null,null,null]
@@ -25,9 +28,6 @@ export function Step_By_Step_Form(){
 	
 	const [FirstFormValidity, setFirstFormValidity] = useState( false)
 	const [update, setUpdate] = useState(0)
-	const [verificationTickPersonalInfo, setVerificationTickPersonalInfo] = useState(false)
-	const [verificationTickPlan, setVerificationTickPlan] = useState(false)
-	const [verificationTickAddOns, setVerificationTickAddOns] = useState(false)
 	const [plan, setPlan] = useState("")
 	console.log({})
 
@@ -35,19 +35,25 @@ export function Step_By_Step_Form(){
 	function HandlePlanValue(args){
 		PlanObject.name =args[0]
 		PlanObject.value = args[1]
-		setVerificationTickPlan(true)
+		PlanObject.isMonthly = args[2]
+		setUpdate(update+1);
+		console.log("planObject")
+		console.log({args})
 	}
+	
 	function HandleAddonsSelection([args,argument,arg]){
 		console.log({args})
 		AddOnsPlan_Array= args
 		AddOnsBooleanValue = argument
 		AddOnsPlan = arg
-		setVerificationTickAddOns(true)
-		console.log({AddOnsPlan})
+		setUpdate(update+1);setUpdate(update+1);
+		console.log("AddOnsPlan")
+		console.log([args,argument,arg])
 	}
 
 	function HandleFormValidity (args) {
-		setFirstFormValidity(args)
+		console.log("i am here")
+		setUpdate(update+1);
 	}
 
 	function HandleGoBackEvent () {
@@ -62,30 +68,22 @@ export function Step_By_Step_Form(){
 		console.log({argument})
 		PersonalInfo_Object.name = argument[0];
 		PersonalInfo_Object.email = argument[1]
-		PersonalInfo_Object.countryCode= argument[2]
-		PersonalInfo_Object.phoneNumber = argument[3]
-		setVerificationTickPersonalInfo(true)
-	}
+		PersonalInfo_Object.phoneNumber = argument[2]
+		PersonalInfo_Object.validity = true
+		setUpdate(update+1);
+		}
 	
-		useEffect(() =>{
-			
-			if (FirstFormValidity == true){
-				setUpdate(update+1);
-				setFirstFormValidity(false)
-			}
-			
-		},[FirstFormValidity])
-		useEffect(() => {
-			if (AddOnsPlan_Array[0]== "1") {
-				AddOnsPlan[0] = "Online Services"
-			}
-			if (AddOnsPlan_Array[1]== "2") {
-				AddOnsPlan[1] = "Larger Storage"
-			}
-			if (AddOnsPlan_Array[0]== "2") {
-				AddOnsPlan[2] = "Customizable Profile"
-			}
-		},[update])
+		// useEffect(() => {
+		// 	if (AddOnsPlan_Array[0]== "1" || AddOnsPlan_Array[0]=="10") {
+		// 		AddOnsPlan[0] = "Online Services"
+		// 	}
+		// 	if (AddOnsPlan_Array[1]== "2" || AddOnsPlan_Array[1]=="20") {
+		// 		AddOnsPlan[1] = "Larger Storage"
+		// 	}
+		// 	if (AddOnsPlan_Array[0]== "2" || AddOnsPlan_Array[0]=="20") {
+		// 		AddOnsPlan[2] = "Customizable Profile"
+		// 	}
+		// },[update])
 
 	const CompArray = [<Personal_Info
 					HandleFormValidity = {HandleFormValidity}
@@ -95,42 +93,50 @@ export function Step_By_Step_Form(){
 				/>,
 				<Plan
 				update = {update}
-				HandleFormValidity = {HandleFormValidity}
 				HandleGoBackEvent={HandleGoBackEvent}
 				HandlePlanValue={HandlePlanValue}
 				PlanObject = {PlanObject}
 				></Plan>,
 				<AddOns
 				update = {update}
-				HandleFormValidity = {HandleFormValidity}
 				HandleGoBackEvent={HandleGoBackEvent}
 				HandleAddonsSelection={HandleAddonsSelection}
 				AddOnsPlan_Array={AddOnsPlan_Array}
 				AddOnsBooleanValue={AddOnsBooleanValue}
-				 ></AddOns>,
+				PlanObject={PlanObject}
+				 ></AddOns>
+				,
 				<ProfileSummary
 					PlanObject={PlanObject}
 					HandlePlanChange={HandlePlanChange}
 					AddOnsPlan_Array={AddOnsPlan_Array}
 					HandleGoBackEvent={HandleGoBackEvent}
+					AddOnsBooleanValue={AddOnsBooleanValue}
 					update = {update}
 					AddOnsPlan={AddOnsPlan}
+					HandleFormValidity={HandleFormValidity}
 				></ProfileSummary>
 				]
 	return(
 		
-		<div className="StepFormMainContainer" style={{ flexDirection: 'column'}}>
+		<div className="StepFormMainContainer">
 			<div className="StepFormContainer">
-				<aside className="Form_leftSide">
+				<aside className="Form_leftSide" style={{
+					backgroundImage : "url("+leftSideBgSvg+")"
+				}}>
 					<Summary
 						update = {update}
-						verificationTickPlan={verificationTickPlan}
-						verificationTickAddOns={verificationTickAddOns}
-						verificationTickPersonalInfo = {verificationTickPersonalInfo}
 					></Summary>
 				</aside>
 				<aside className="Form_rightSide">
-				{CompArray[update]}
+					{ update == 4 ? 
+						<div className="thankYouContainer">
+						<img src={thankYouIcon} alt="img" />
+						<h2>Thank you!</h2>
+						<p>Thanks for confirming your subscription! We hope you have fun using oir platform.If you eveer need support.Please feel free to email us @lorem@gaming.com</p>
+						</div> : 
+						CompArray[update]
+					}
 				</aside>
 			</div>
 		</div>

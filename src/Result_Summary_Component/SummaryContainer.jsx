@@ -19,7 +19,7 @@ export function SummaryContainer(argument) {
 					background : backgroundColorArray[i]
 				}}>
 				<div key={i}>
-					<img src={iconArray[i]} />
+					<img src={iconArray[i]} alt="svg"/>
 
 					{/*<svg dangerouslySetInnerHTML={{ __html: Data.icon}}> </svg>*/}
 					{/*<img src={Data.icon} />*/}
@@ -32,7 +32,7 @@ export function SummaryContainer(argument) {
 						{Data.score}
 					</h5>
 					<p>
-						  /100
+						/100
 					</p>
 				</div>
 			</div>

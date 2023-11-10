@@ -1,0 +1,14 @@
+@import "./mobileDesign.scss";
+
+.ProfileContainer{
+	@include xs{
+		background: white;
+		align-items: center;
+		width: 100%;
+		gap: 25px;
+
+		.SummaryContainer{
+			gap: 17px;
+		}
+	}
+}

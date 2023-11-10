@@ -1,0 +1,15 @@
+@import "./mobileDesign.scss";
+
+.Personal_Info_Container{
+
+	@include xs{
+		padding: 29px;
+		height: fit-content;
+		box-shadow: 2px 4px 5px 0px #b29b9b;
+		form{
+
+			gap: 20px;
+		}
+	}
+}
+

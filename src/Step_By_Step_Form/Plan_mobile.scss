@@ -1,0 +1,33 @@
+@import "./mobileDesign.scss";
+
+.PlanMainContainer{
+					box-shadow: 2px 4px 5px 0px #b29b9b;
+	
+
+	@include xs{
+		background: white;
+		padding: 20px;
+		height: fit-content;
+		position: static;
+
+		form{
+			.LabelContainer{
+				display: flex;
+				flex-direction: column;
+
+				label{
+					span{
+						flex-direction: row;
+						align-items: center;
+						padding: 7px;
+
+						div{
+							margin: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

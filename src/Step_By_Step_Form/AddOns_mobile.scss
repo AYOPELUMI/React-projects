@@ -1,0 +1,33 @@
+@import"./mobileDesign.scss";
+
+.Add_Ons_Container{
+	@include xs{
+		position: static;
+		background: white;
+		padding: 20px;
+
+		form{
+			justify-content: center;
+			align-items: center;
+
+			label{
+				height: fit-content;
+				padding: 7px;
+				.input{
+					width: 15px;
+					height: 15px;
+				}
+				span{
+					padding: 2px;
+
+					h4{
+						font-size: 11px;
+					}
+					p{
+						font-size: 9px;
+					}
+				}
+			}
+		}
+	}
+}

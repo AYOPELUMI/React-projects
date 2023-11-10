@@ -1,26 +1,27 @@
 .ProfileContainer{
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
+	gap: 12px;
 	padding: 10px;
 	padding-top: 20px;
-	width: 100%;
+	width: 90%;
 	color: #000;
 
-	div{
+	.totalAmountDisplay{
 		display: flex;
 		justify-content: space-between;
+		background: hsl(0, 0%, 100%);
+		padding: 8px 0px;
 
 		h3{
-			 	font-size: 18px;
-			 	font-weight: bolder;
-			 	color: #000;
-			 	padding: 0;
-			 }
-		p{
 			 	font-size: 17px;
 			 	font-weight: bolder;
-				color: #afafb6;
+			 	color: hsl(243, 100%, 62%);
+			 }
+		p{
+			 	font-size: 14px;
+			 	font-weight: 900;
+				color: hsl(229, 24%, 87%);
 			 	padding: 0;
 			 }		 
 	}
@@ -28,18 +29,14 @@
 	.ProfileHeading{
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
+		gap: 2px;
 		h3{
-		 	font-size: 30px;
-		 	letter-spacing: 2px;
+		 	font-size: 27px;
 		 	font-weight: 900;
 		 	color: #000;
-		 	padding: 0;
-		 	margin: 0;
 		 }
 		 p{
 		 	font-size: 15px;
-		 	letter-spacing: 1px;
 		 	font-weight: 600;
 			color: #afafb6;
 
@@ -48,15 +45,15 @@
 	.SummaryContainer{
 		display: flex;
 		flex-direction: column;
-		gap: 15px;
-		padding: 14px;
-		background: #afafb62e;
-		margin-top: 30px;
+		gap: 12px;
+		padding: 12px;
+		width: 90%;
+		background: hsl(231, 100%, 99%);
 	}
 
 	.PlanSummaryContainer{
 		width: 100%;
-		height: 70px;
+		height: 60px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -65,23 +62,23 @@
 			display: flex;
 			flex-direction: column;
 			h4{
-			 	font-size: 24px;
-			 	font-weight: bolder;
-			 	color: #000;
+			 	font-size: 15px;
+			 	font-weight: 500;
+			 	color: hsl(213, 96%, 18%);
 			 	padding: 0;
 			 }
 		}
 		 a{
-			 	font-size: 17px;
+			 	font-size: 13px;
 			 	font-weight: 600;
-				color: #afafb6;
+				color: hsl(231, 11%, 63%);
 			 	text-decoration: underline;
 			 	cursor: pointer;
 			 }
 			  p{
 			 	font-size: 14px;
-			 	font-weight: lighter;
-				color: #000;
+			 	font-weight:300;
+				color: hsl(213, 96%, 18%);
 			 	}
 	}
 	.Label{
@@ -89,15 +86,15 @@
 		justify-content: space-between;
 
 		h4{
-			 	font-size: 21px;
-			 	font-weight: bolder;
-				color: #afafb6;
+			 	font-size: 15px;
+			 	font-weight: 300;
+				color: hsl(231, 11%, 63%);
 			 	padding: 0;
 			 }
 			 p{
-			 	font-size: 18px;
+			 	font-size: 15px;
 			 	font-weight: lighter;
-			 	color: #000;
+			 	color: hsl(213deg 96% 18% / 81%);
 			 }
 	}
 }

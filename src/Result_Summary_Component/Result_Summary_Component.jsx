@@ -7,7 +7,7 @@ export function ResultSummaryComponent () {
 				<aside className="displayContainer">
 					<h2>Your Result</h2>
 					<div className="resultCircleContainer">
-						<h2>43</h2>
+						<h2>76</h2>
 						<p>of 100</p>
 					</div>
 					<h3>Great</h3>

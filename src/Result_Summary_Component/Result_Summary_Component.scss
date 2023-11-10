@@ -4,9 +4,10 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background:hsl(0, 0%, 100%);
+	background:hsl(221, 100%, 96%);
 	overflow: scroll;
-	
+
+
 
 	.resultSummaryContainer{
 		min-width: 470px;
@@ -29,7 +30,7 @@
 			120deg,
 			 hsl(241, 81%, 54%) 60%,
 			 hsl(252, 100%, 67%));
-			padding: 20px;
+			padding: 12px;
 			padding-top: 35px;
 			
 			h2{
@@ -78,14 +79,14 @@
 			display: flex;
 			flex-direction: column;
 			gap: 20px;
-			padding: 20px;
+			padding: 15px;
 			padding-right: 30px;
 			background: hsl(241deg 100% 89% / 8%);
 
 			h2{
 				color: #000;
 				font-weight: 500;
-				font-size: 18px;
+				font-size: 16px;
 			}
 			.summaryDivContainer{
 				width: 100%;
@@ -95,7 +96,7 @@
 				color: #000;
 
 				.summaryOptionContainer{
-					width: 90%;
+					width: 100%;
 					display: flex;
 					justify-content: space-between;
 					padding: 10px 8px;
@@ -143,13 +144,14 @@
 		}
 	}
 }
-	@media screen and (max-width: 600px){
+	@media screen and (max-width: 510px){
 		.resultSummaryMainContainer{
 			display: block;
 		
 		.resultSummaryContainer{
 			flex-direction: column;
-			min-width: 380px;	
+			min-width: 250px;
+			padding-top: 30px;
 		}
 		}
 	}

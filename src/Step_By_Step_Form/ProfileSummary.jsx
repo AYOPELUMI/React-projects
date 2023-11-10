@@ -1,5 +1,6 @@
 import "./ProfileSummary.scss"
-import {useState} from "react"
+import "./ProfileSummary_mobile.scss"
+import {useState, useEffect} from "react"
 import{ButtonComponent} from"./utilities/Button_Component"
 
 
@@ -11,27 +12,45 @@ export function ProfileSummary(props){
 		AddOnsPlan_Array,
 		HandleGoBackEvent,
 		update,
-		AddOnsPlan
+		AddOnsPlan,
+		AddOnsBooleanValue,
+		HandleFormValidity
 	} = props
 
 	let TotalAmount = 0
+	const [totalAmount, setTotalAmount] = useState(0)
+	const [isMonthly, setIsMonthly] = useState(PlanObject.isMonthly)
 
 console.log({AddOnsPlan_Array})
 console.log({AddOnsPlan})
+console.log({PlanObject})
 	let DisplayPlanArray = []
+	useEffect(() =>{
+		console.log('i am in effect')
+		setIsMonthly(PlanObject.isMonthly)
+		setTotalAmount(TotalAmount)
+	},[])
 
-	for (var i = 0; i <= AddOnsPlan.length -1; i++) {
+	for (var i = 0; i < AddOnsPlan_Array.length; i++) {
+		if (AddOnsPlan_Array > 0) {
+			TotalAmount+=Number(AddOnsPlan_Array[i])
+		}
+	}
+
+	for (var i = 0; i <= AddOnsBooleanValue.length -1; i++) {
 		console.log({i})
 		let Display_El
-		if (i == AddOnsPlan.length) {
+		if (i == AddOnsBooleanValue.length) {
+			console.log({TotalAmount})
+			setTotalAmount(TotalAmount)
 			break;
 		}
-		if (AddOnsPlan_Array[i] != null) {
+		if (AddOnsPlan_Array[i] > 0 ) {
 			console.log("i am in the else statement")
 			Display_El = (
-			<div className=" Label">
+			<div className=" Label" key={i}>
 				<h4>{AddOnsPlan[i]}</h4>
-				<p>+${AddOnsPlan_Array[i]}/mon</p>
+				<p>+${AddOnsPlan_Array[i]}{isMonthly ? "/yr" : "/mo"}</p>
 			</div>
 			)
 		TotalAmount+=Number(AddOnsPlan_Array[i])
@@ -53,20 +72,21 @@ console.log({AddOnsPlan})
 			<div className="SummaryContainer">
 				<div className="PlanSummaryContainer">
 					<div className="PlanDetails">
-						<h4>{PlanObject.name} (Monthly)</h4>
+						<h4>{PlanObject.name} {isMonthly ? "(Yearly)":"(Monthly)"}</h4>
 						<a onClick={HandlePlanChange}>Change</a>
 					</div>
-					<p>${PlanObject.value}/mon</p>
+					<p>${PlanObject.value}{isMonthly ? "/yr" : "/mo"}</p>
 				</div>
 				{DisplayPlanArray}
-			</div>
-			<div>
-				<p>Total per month</p>
-				<h3>+${TotalAmount + Number(PlanObject.value)}/mo</h3>
+				<div className="totalAmountDisplay">
+					<p>Total per month</p>
+					<h3>+${totalAmount + Number(PlanObject.value)}{isMonthly ? "/yr" : "/mo"}</h3>
+				</div>
 			</div>
 
 			<ButtonComponent
 			DisplayWord = "Confirm"
+			HandleEvent ={HandleFormValidity}
 			update = {update}
 			bgColor="#483ef4"
 			HandleGoBackEvent={HandleGoBackEvent}
